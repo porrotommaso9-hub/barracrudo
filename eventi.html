@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eventi — Barracrudo · San Felice Circeo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/style.css"/>
+<style>
+body{background:var(--ink2)}
+.eventi-wrap{max-width:1200px;margin:0 auto;padding:6rem 48px}
+.eventi-intro{max-width:600px;margin-bottom:5rem}
+.eventi-intro .kicker{font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:var(--teal);margin-bottom:1.2rem}
+.eventi-intro h2{font-family:var(--f-d);font-size:clamp(3rem,5vw,6rem);line-height:.86;letter-spacing:.03em;color:var(--white)}
+.eventi-intro h2 em{font-family:var(--f-s);font-style:italic;color:var(--teal);font-size:.68em;display:block;line-height:1.1}
+.eventi-intro p{font-size:.95rem;font-weight:300;line-height:1.9;color:rgba(255,255,255,.65);margin-top:1.5rem}
+
+/* esperienze grid */
+.esperienze{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6rem}
+.esp{position:relative;overflow:hidden;min-height:500px;display:flex;flex-direction:column;justify-content:flex-end}
+.esp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.65);transition:transform .7s ease,filter .5s}
+.esp:hover img{transform:scale(1.05);filter:brightness(.42) saturate(.8)}
+.esp-content{position:relative;z-index:2;padding:2.5rem;background:linear-gradient(to top,rgba(14,19,16,.9) 0%,transparent 60%)}
+.esp-tag{font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.esp-title{font-family:var(--f-d);font-size:clamp(1.8rem,3vw,3rem);letter-spacing:.04em;color:var(--white);line-height:.9}
+.esp-desc{font-size:.85rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.65);margin-top:.7rem;max-width:340px}
+
+/* eventi in programma */
+.calendar{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);margin-bottom:5rem}
+.calendar-header{padding:2rem 2.5rem;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}
+.calendar-header h3{font-family:var(--f-d);font-size:2rem;letter-spacing:.08em;color:var(--white)}
+.calendar-header p{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.ev-item{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;padding:2rem 2.5rem;border-bottom:1px solid rgba(255,255,255,.05);transition:background .3s}
+.ev-item:last-child{border-bottom:none}
+.ev-item:hover{background:rgba(255,255,255,.02)}
+.ev-date{text-align:center;min-width:56px}
+.ev-date-day{font-family:var(--f-d);font-size:2.5rem;color:var(--teal);line-height:1}
+.ev-date-month{font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.ev-info-title{font-family:var(--f-s);font-size:1.2rem;color:var(--white);margin-bottom:.3rem}
+.ev-info-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.6}
+.ev-badge{font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;padding:.35rem .8rem;background:rgba(38,186,186,.15);color:var(--teal);border:1px solid rgba(38,186,186,.25);white-space:nowrap}
+
+/* privato */
+.privato{display:grid;grid-template-columns:1fr 1fr;background:var(--teal);min-height:50vh}
+.priv-img{position:relative;overflow:hidden}
+.priv-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.7)}
+.priv-content{padding:6rem 5rem;display:flex;flex-direction:column;justify-content:center}
+.priv-kicker{font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(14,19,16,.55);margin-bottom:1.4rem}
+.priv-h2{font-family:var(--f-d);font-size:clamp(2.5rem,4vw,5rem);line-height:.86;letter-spacing:.03em;color:var(--ink)}
+.priv-h2 em{font-family:var(--f-s);font-style:italic;font-size:.72em;display:block;margin-top:.1em;color:rgba(14,19,16,.6)}
+.priv-desc{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(14,19,16,.7);margin-top:1.5rem;max-width:360px}
+.priv-cta{margin-top:2rem;display:inline-block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;background:var(--ink);color:var(--white);padding:.7rem 1.7rem .7rem 1.5rem;clip-path:polygon(10px 0,100% 0,100% 100%,0 100%);transition:background .25s}
+.priv-cta:hover{background:var(--ink2)}
+
+@media(max-width:900px){
+  .eventi-wrap{padding:5rem 24px}
+  .esperienze{grid-template-columns:1fr}
+  .privato{grid-template-columns:1fr}
+  .priv-img{height:50vw}
+  .priv-content{padding:4rem 24px}
+  .ev-item{grid-template-columns:auto 1fr;gap:1.2rem}
+  .ev-badge{display:none}
+}
+@media(max-width:600px){.eventi-wrap{padding:4rem 18px}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo"><span class="nav__logo-name">BARRACRUDO</span><span class="nav__logo-city">San Felice Circeo</span></a>
+  <ul class="nav__links">
+    <li><a href="menu.html">Menu</a></li><li><a href="location.html">Location</a></li><li><a href="eventi.html">Eventi</a></li><li><a href="contatti.html">Contatti</a></li>
+  </ul>
+  <a href="contatti.html" class="nav__cta">Prenota</a>
+  <div class="nav__hbg" id="hbg"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav__mob" id="mobMenu">
+  <a href="menu.html">Menu</a><a href="location.html">Location</a><a href="eventi.html">Eventi</a><a href="contatti.html">Contatti</a>
+  <a href="contatti.html" class="mob-cta">Prenota ora</a>
+</div>
+
+<div class="page-hero">
+  <img src="https://picsum.photos/seed/barracrudo-sunset-event/1600/700" alt="Evento Barracrudo"/>
+  <div class="page-hero-fog"></div>
+  <div class="page-hero-content">
+    <p class="page-hero-kicker">Esperienze</p>
+    <h1 class="page-hero-h1">EVENTI<br>E<br><em>serate.</em></h1>
+  </div>
+</div>
+
+<div class="eventi-wrap">
+  <div class="eventi-intro" data-reveal="up">
+    <p class="kicker">Le nostre esperienze</p>
+    <h2>QUATTRO<br>MODI DI<br><em>vivere Barracrudo.</em></h2>
+    <p>Dal tramonto con bollicine alle serate a tema, dalla cucina del crudo agli eventi privati: ogni visita a Barracrudo è un'esperienza diversa.</p>
+  </div>
+
+  <div class="esperienze" data-reveal="up">
+    <div class="esp">
+      <img src="https://picsum.photos/seed/circeo-tramonto/700/600" alt="La Location" loading="lazy"/>
+      <div class="esp-content">
+        <div class="esp-tag">La Location</div>
+        <div class="esp-title">PORTO<br>DEL CIRCEO</div>
+        <div class="esp-desc">La rocca, il Tirreno, il porto. Una scenografia naturale unica nel litorale laziale.</div>
+      </div>
+    </div>
+    <div class="esp">
+      <img src="https://picsum.photos/seed/champagne-mare/700/600" alt="Bubbles and More" loading="lazy"/>
+      <div class="esp-content">
+        <div class="esp-tag">Bubbles & More</div>
+        <div class="esp-title">BOLLICINE<br>AL TRAMONTO</div>
+        <div class="esp-desc">Aperitivi con selezione di champagne e vini naturali, con crudi e stuzzichini del mare.</div>
+      </div>
+    </div>
+    <div class="esp">
+      <img src="https://picsum.photos/seed/cucina-chef/700/600" alt="La Cucina" loading="lazy"/>
+      <div class="esp-content">
+        <div class="esp-tag">La Cucina</div>
+        <div class="esp-title">MENU<br>DEGUSTAZIONE</div>
+        <div class="esp-desc">Un percorso di 5 portate costruito ogni sera sulle eccellenze del giorno. Solo su prenotazione.</div>
+      </div>
+    </div>
+    <div class="esp">
+      <img src="https://picsum.photos/seed/serata-spagnola/700/600" alt="Serate Speciali" loading="lazy"/>
+      <div class="esp-content">
+        <div class="esp-tag">Serate Speciali</div>
+        <div class="esp-title">EVENTI<br>A TEMA</div>
+        <div class="esp-desc">Serate spagnole con paella, cene jazz, degustazioni di vini naturali. Seguici su Instagram per i prossimi appuntamenti.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- In programma -->
+  <div class="calendar" data-reveal="up">
+    <div class="calendar-header">
+      <h3>IN PROGRAMMA</h3>
+      <p>Estate 2025</p>
+    </div>
+    <div class="ev-item">
+      <div class="ev-date"><div class="ev-date-day">14</div><div class="ev-date-month">Giu</div></div>
+      <div><div class="ev-info-title">Serata Spagnola con Paella di Mariscos</div><div class="ev-info-desc">In collaborazione con Iberica · Ore 20:30 · Bevande escluse · 50 €</div></div>
+      <div class="ev-badge">Disponibile</div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-date"><div class="ev-date-day">21</div><div class="ev-date-month">Giu</div></div>
+      <div><div class="ev-info-title">Solstizio d'Estate — Cena al Tramonto</div><div class="ev-info-desc">Menu degustazione 5 portate con bollicine di benvenuto · Ore 19:30 · 75 €</div></div>
+      <div class="ev-badge">Disponibile</div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-date"><div class="ev-date-day">05</div><div class="ev-date-month">Lug</div></div>
+      <div><div class="ev-info-title">Bubbles Night — Champagne & Crudi</div><div class="ev-info-desc">Selezione di 4 champagne abbinati ai crudi del giorno · Ore 20:00 · 60 €</div></div>
+      <div class="ev-badge">Pochi posti</div>
+    </div>
+    <div class="ev-item">
+      <div class="ev-date"><div class="ev-date-day">19</div><div class="ev-date-month">Lug</div></div>
+      <div><div class="ev-info-title">Jazz & Mare — Serata Musicale</div><div class="ev-info-desc">Quartetto jazz live, menu à la carte · Ingresso libero con prenotazione</div></div>
+      <div class="ev-badge">In arrivo</div>
+    </div>
+  </div>
+</div>
+
+<!-- Privato -->
+<div class="privato">
+  <div class="priv-img" data-reveal="left">
+    <img src="https://picsum.photos/seed/barracrudo-privato/700/600" alt="Evento privato" loading="lazy"/>
+  </div>
+  <div class="priv-content" data-reveal="right">
+    <p class="priv-kicker">Su misura</p>
+    <h2 class="priv-h2">EVENTI<br>PRIVATI<br><em>e aziendali.</em></h2>
+    <p class="priv-desc">Cene private, ricorrenze, team building e presentazioni aziendali. Possiamo riservare il ristorante in esclusiva o creare un angolo riservato su misura per te.</p>
+    <a href="contatti.html" class="priv-cta">Richiedi un preventivo →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft__top">
+    <div class="ft__brand"><div class="ft__brand-name">BARRACRUDO</div><span class="ft__brand-city">San Felice Circeo</span><p>Ristorante di pesce al porto di San Felice Circeo.</p></div>
+    <div class="ft__col"><div class="ft__col-title">Pagine</div><ul><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="location.html">Location</a></li><li><a href="eventi.html">Eventi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div>
+    <div class="ft__col"><div class="ft__col-title">Contatti</div><ul><li><a href="tel:+390773249883">0773 249 883</a></li><li><a href="mailto:info@barracrudo.it">info@barracrudo.it</a></li></ul></div>
+    <div class="ft__col"><div class="ft__col-title">Social</div><ul><li><a href="https://instagram.com/barracrudo" target="_blank">@barracrudo</a></li><li><a href="https://maps.app.goo.gl/mEJHw2kocrbtC5dt8" target="_blank">Google Maps</a></li></ul></div>
+  </div>
+  <div class="ft__bottom"><p>© 2025 Barracrudo · San Felice Circeo (LT)</p><p class="ft__bottom-teal">Mare · Crudo · Ogni giorno</p></div>
+</footer>
+<script src="assets/nav.js"></script>
+</body>
+</html>
