@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contatti — Barracrudo · San Felice Circeo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/style.css"/>
+<style>
+body{background:var(--cream)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
+
+/* left — info */
+.contact-info{background:var(--ink2);padding:7rem 5rem;display:flex;flex-direction:column;justify-content:center}
+.ci-kicker{font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem}
+.ci-h2{font-family:var(--f-d);font-size:clamp(2.8rem,4.5vw,5.5rem);line-height:.86;letter-spacing:.03em;color:var(--white);margin-bottom:2.5rem}
+.ci-h2 em{font-family:var(--f-s);font-style:italic;color:var(--teal);font-size:.7em;display:block;margin-top:.1em}
+.ci-items{display:flex;flex-direction:column;gap:2rem}
+.ci-item{display:grid;grid-template-columns:40px 1fr;gap:1rem;align-items:start;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.ci-item:last-child{border-bottom:none;padding-bottom:0}
+.ci-ico{width:40px;height:40px;border:1px solid rgba(38,186,186,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-ico svg{width:15px;height:15px;stroke:var(--teal);stroke-width:1.5;fill:none}
+.ci-lbl{font-size:.48rem;letter-spacing:.42em;text-transform:uppercase;color:var(--teal);margin-bottom:.3rem}
+.ci-val{font-family:var(--f-s);font-size:1rem;color:rgba(255,255,255,.85);line-height:1.55}
+.ci-val a{color:var(--teal);transition:opacity .2s}
+.ci-val a:hover{opacity:.7}
+
+/* right — form */
+.contact-form{background:var(--cream);padding:7rem 5rem;display:flex;flex-direction:column;justify-content:center}
+.cf-h3{font-family:var(--f-d);font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;letter-spacing:.04em;color:var(--ink);margin-bottom:.5rem}
+.cf-sub{font-size:.85rem;font-weight:300;color:var(--muted);margin-bottom:2.5rem;line-height:1.6}
+
+.form-group{margin-bottom:1.4rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{display:block;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:var(--teal2);margin-bottom:.5rem;font-weight:500}
+input,textarea,select{width:100%;background:var(--sand);border:1px solid rgba(14,19,16,.12);padding:.8rem 1rem;font-family:var(--f-b);font-size:.9rem;font-weight:300;color:var(--ink);outline:none;transition:border-color .25s;border-radius:0}
+input:focus,textarea:focus,select:focus{border-color:var(--teal)}
+textarea{min-height:120px;resize:vertical}
+select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23178080' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+
+.form-submit{margin-top:1.5rem}
+.form-submit button{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--ink);background:var(--teal);border:none;padding:.75rem 2.2rem .75rem 2rem;clip-path:polygon(10px 0,100% 0,100% 100%,0 100%);cursor:pointer;transition:background .25s,color .25s;width:100%}
+.form-submit button:hover{background:var(--teal2);color:#fff}
+
+.form-note{font-size:.7rem;font-weight:300;color:var(--muted);margin-top:1rem;line-height:1.7}
+.form-note a{color:var(--teal2)}
+
+/* success */
+.form-success{display:none;text-align:center;padding:3rem;background:rgba(38,186,186,.08);border:1px solid rgba(38,186,186,.2)}
+.form-success.show{display:block}
+.form-success p{font-family:var(--f-s);font-size:1.4rem;color:var(--ink);font-style:italic}
+.form-success small{display:block;margin-top:.5rem;font-size:.72rem;color:var(--muted)}
+
+@media(max-width:900px){
+  .contact-grid{grid-template-columns:1fr;min-height:auto}
+  .contact-info{padding:5rem 24px}
+  .contact-form{padding:5rem 24px}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo"><span class="nav__logo-name">BARRACRUDO</span><span class="nav__logo-city">San Felice Circeo</span></a>
+  <ul class="nav__links">
+    <li><a href="menu.html">Menu</a></li><li><a href="location.html">Location</a></li><li><a href="eventi.html">Eventi</a></li><li><a href="contatti.html">Contatti</a></li>
+  </ul>
+  <a href="contatti.html" class="nav__cta">Prenota</a>
+  <div class="nav__hbg" id="hbg"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav__mob" id="mobMenu">
+  <a href="menu.html">Menu</a><a href="location.html">Location</a><a href="eventi.html">Eventi</a><a href="contatti.html">Contatti</a>
+  <a href="contatti.html" class="mob-cta">Prenota ora</a>
+</div>
+
+<div class="page-hero">
+  <img src="assets/img/barracrudo-esterno.jpg" alt="Barracrudo contatti"/>
+  <div class="page-hero-fog"></div>
+  <div class="page-hero-content">
+    <p class="page-hero-kicker">Scrivici</p>
+    <h1 class="page-hero-h1">CONTATTI<br>E<br><em>prenotazioni.</em></h1>
+  </div>
+</div>
+
+<div class="contact-grid">
+  <div class="contact-info" data-reveal="left">
+    <p class="ci-kicker">Dove e come trovarci</p>
+    <h2 class="ci-h2">PARLIAMO<br><em>di persona.</em></h2>
+    <div class="ci-items">
+      <div class="ci-item">
+        <div class="ci-ico"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="ci-lbl">Dove</div><div class="ci-val">Piazza Enrico Fabrizi<br>Porto di San Felice Circeo, 04017 LT</div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.86a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.01z"/></svg></div>
+        <div><div class="ci-lbl">Telefono</div><div class="ci-val"><a href="tel:+390773249883">0773 249 883</a></div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@barracrudo.it">info@barracrudo.it</a></div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="ci-lbl">Orari</div><div class="ci-val">Mar – Sab 12:00 – 00:00<br>Dom 11:00 – 00:00<br>Lun chiuso</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form" data-reveal="right">
+    <h3 class="cf-h3">PRENOTA<br>IL TUO TAVOLO</h3>
+    <p class="cf-sub">Compila il modulo e ti risponderemo entro 24 ore. Per richieste urgenti chiama direttamente.</p>
+
+    <form id="contactForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome *</label>
+          <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required/>
+        </div>
+        <div class="form-group">
+          <label for="cognome">Cognome *</label>
+          <input type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="email@esempio.it" required/>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Telefono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+39 000 000 0000"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="data">Data *</label>
+          <input type="date" id="data" name="data" required/>
+        </div>
+        <div class="form-group">
+          <label for="persone">Numero di persone *</label>
+          <select id="persone" name="persone" required>
+            <option value="">Seleziona</option>
+            <option>1 persona</option>
+            <option>2 persone</option>
+            <option>3 persone</option>
+            <option>4 persone</option>
+            <option>5 persone</option>
+            <option>6 persone</option>
+            <option>7+ persone</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="orario">Orario preferito</label>
+        <select id="orario" name="orario">
+          <option value="">Seleziona</option>
+          <option>Pranzo (12:00 – 14:30)</option>
+          <option>Cena (19:30 – 22:00)</option>
+          <option>Cena tardiva (22:00+)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="note">Note o richieste speciali</label>
+        <textarea id="note" name="note" placeholder="Allergie, occasioni speciali, richieste particolari..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit">Invia richiesta di prenotazione</button>
+      </div>
+      <p class="form-note">I campi contrassegnati con * sono obbligatori. La prenotazione sarà confermata via email entro 24 ore.</p>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <p>"Grazie per la tua richiesta."</p>
+      <small>Ti risponderemo entro 24 ore. A presto a Barracrudo!</small>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft__top">
+    <div class="ft__brand"><div class="ft__brand-name">BARRACRUDO</div><span class="ft__brand-city">San Felice Circeo</span><p>Ristorante di pesce al porto di San Felice Circeo.</p></div>
+    <div class="ft__col"><div class="ft__col-title">Pagine</div><ul><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="location.html">Location</a></li><li><a href="eventi.html">Eventi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div>
+    <div class="ft__col"><div class="ft__col-title">Contatti</div><ul><li><a href="tel:+390773249883">0773 249 883</a></li><li><a href="mailto:info@barracrudo.it">info@barracrudo.it</a></li></ul></div>
+    <div class="ft__col"><div class="ft__col-title">Indirizzo</div><ul><li><a href="#">Porto S. Felice Circeo</a></li><li><a href="#">04017 Latina (LT)</a></li></ul></div>
+  </div>
+  <div class="ft__bottom"><p>© 2025 Barracrudo · San Felice Circeo (LT)</p><p class="ft__bottom-teal">Mare · Crudo · Ogni giorno</p></div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  // In production: send to Supabase or email service
+  this.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+</script>
+</body>
+</html>
